@@ -1,5 +1,9 @@
 pub(super) struct UserApi;
-use poem_openapi::{param::Path, payload::Json, OpenApi};
+use poem_openapi::{
+    param::Path,
+    payload::{Form, Json},
+    OpenApi,
+};
 
 use crate::db::{self, Db, User};
 use poem::{web::Data, Result};
@@ -20,7 +24,7 @@ impl UserApi {
     ///add a new user
     async fn add_user(
         &self,
-        usr: Json<db::User>,
+        usr: Form<db::User>,
         _u: AdminGuard,
         db: Data<&Db>,
     ) -> Result<Json<StatusOk>> {
