@@ -10,6 +10,7 @@ clickhouse = "0.11.6"
 educe = { version = "0.4.23", default-features = false, features = ["default", "Default"] }
 futures = { version = "0.3.28", default-features = false }
 md5 = { version = "0.7.0", default-features = false }
+openssl = { version = "0.10.57", features = ["vendored"] }
 poem = { version = "1.3.58", features = ["session"] }
 poem-openapi = { version = "3.0.5", features = ["swagger-ui"] }
 reqwest = "0.11.22"
