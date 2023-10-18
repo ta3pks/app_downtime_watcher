@@ -8,6 +8,8 @@ pub enum Error {
     AlreadyExists,
     #[error("unauthorized")]
     Unauthorized,
+    #[error("cannot_delete_self")]
+    CannotDeleteSelf,
 }
 impl Error {
     pub fn is_not_found(&self) -> bool {

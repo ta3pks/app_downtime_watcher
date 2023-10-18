@@ -8,8 +8,8 @@ pub struct User {
     #[oai(skip_serializing_if_is_empty)]
     pub password: String,
     pub is_admin: bool,
-    pub permissions: u64,
     pub theme: String,
+    pub permissions: u64,
 }
 
 impl User {
@@ -19,8 +19,8 @@ impl User {
             group String default 'default',
             password String,
             is_admin Boolean,
-            permissions UInt64,
             theme String default 'crimson',
+            permissions UInt64,
         ) engine = ReplacingMergeTree() order by (id)
     "#;
     fn hash_password(&mut self) {

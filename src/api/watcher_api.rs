@@ -12,7 +12,10 @@ use poem_openapi::{
 use crate::db::{self, Db};
 use poem::{web::Data, Result};
 
-use super::guards::{AdminGuard, UserGuard};
+use super::{
+    guards::{AdminGuard, UserGuard},
+    StatusOk,
+};
 #[OpenApi(prefix_path = "/api/endpoints", tag = "super::Groups::Endpoints")]
 impl WatcherApi {
     #[oai(path = "/", method = "get")]
@@ -26,9 +29,9 @@ impl WatcherApi {
         ep: Form<db::Endpoint>,
         db: Data<&Db>,
         _u: AdminGuard,
-    ) -> Result<()> {
+    ) -> Result<Json<StatusOk>> {
         db.add_endpoint(&ep).await?;
-        Ok(())
+        Ok(Json(().into()))
     }
     #[oai(path = "/", method = "delete")]
     async fn delete_endpoint(
@@ -36,8 +39,8 @@ impl WatcherApi {
         ep: Form<DeleteEpRequest>,
         db: Data<&Db>,
         _u: AdminGuard,
-    ) -> Result<()> {
+    ) -> Result<Json<StatusOk>> {
         db.delete_endpoint(&ep.name, &ep.url).await?;
-        Ok(())
+        Ok(Json(().into()))
     }
 }
