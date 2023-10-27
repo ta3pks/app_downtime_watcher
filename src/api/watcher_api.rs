@@ -26,7 +26,7 @@ impl WatcherApi {
     ///Admin required
     async fn add_endpoint(
         &self,
-        ep: Form<db::Endpoint>,
+        ep: Json<db::Endpoint>,
         db: Data<&Db>,
         _u: AdminGuard,
     ) -> Result<Json<StatusOk>> {
